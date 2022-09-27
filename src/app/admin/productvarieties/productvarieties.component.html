@@ -1,0 +1,54 @@
+<div class="row  table-bordered" *ngIf="product">
+  <div class="col-lg-12">
+    <h1>Product Varieties - {{ product.name }}</h1>
+  </div>
+  <div class="col-lg-12">
+    <form [formGroup]="formdata" (ngSubmit)="onClickSubmit(formdata.value)">
+      <input type="hidden" formControlName="id" />
+      <div class="form-group">
+        <label>Color</label>
+        <input type="text" class="form-control" formControlName="color" />
+      </div>
+      <div class="form-group">
+        <label>Size</label>
+        <input type="text" class="form-control" formControlName="size" />
+      </div>
+      <div class="form-group">
+        <label>MRP</label>
+        <input type="number" class="form-control" formControlName="mrp" />
+      </div>
+      <div class="form-group">
+        <label>Price</label>
+        <input type="number" class="form-control" formControlName="price" />
+      </div>
+      <div class="form-group">
+        <input type="submit" [disabled]="!formdata.valid" value="Save" class="btn btn-success" />
+      </div>
+    </form>
+  </div>
+  <div class="col-lg-12">
+    <div class="table-scrollable">
+      <table class="table table-bordered table-stripped">
+        <tr>
+          <th>Actions</th>
+          <th>Sr No</th>
+          <th>Color</th>
+          <th>Size</th>
+          <th>MRP</th>
+          <th>Price</th>
+        </tr>
+        <tr *ngFor="let variety of product.varieties;let i = index;">
+          <td style="width:120px;">
+            <button class="btn btn-danger btn-sm" (click)="deleteVariety(variety)">Delete</button>
+          </td>
+          <td>{{ (i + 1) }}</td>
+          <td>{{ variety.color }}</td>
+          <td>{{ variety.size }}</td>
+          <td>{{ variety.mrp | currency:"INR" }}</td>
+          <td>{{ variety.price | currency:"INR" }}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+

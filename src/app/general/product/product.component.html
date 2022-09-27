@@ -1,0 +1,84 @@
+<div class="breadcrumbs" *ngIf="product">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <p class="bread"><span><a routerLink="/">Home</a></span> / <span>{{ product.name }}</span></p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="colorlib-product" *ngIf="product">
+  <div class="container">
+    <div class="row row-pb-lg product-detail-wrap">
+      <div class="col-sm-8">
+          <div class="item">
+            <div class="product-entry border">
+              <span class="prod-img">
+                <img src="{{ baseurl + product.imagepath }}" class="img-fluid" alt="Free html5 bootstrap 4 template">
+              </span>
+            </div>
+          </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="product-desc">
+          <h3>{{ product.name }}</h3>
+          <p class="price">
+            <span>{{ price | currency:"INR" }}</span>
+            <del>{{ mrp | currency:"INR" }}</del>
+          </p>
+          <p class="text-danger">{{ message }}</p>
+          <p>{{ product.description }}</p>
+          <div class="size-wrap" *ngIf="product.varieties.length > 0">
+            <div class="block-26 mb-2">
+              <h4>Size</h4>
+              <select [(ngModel)]="size" class="form-control" (change)="checkForMRPPrice()">
+                <option value="">Size</option>
+                <option *ngFor="let variety of product.varieties;" value="{{ variety.size }}">{{ variety.size }}</option>
+              </select>
+            </div>
+            <div class="block-26 mb-4">
+              <h4>Color</h4>
+              <select [(ngModel)]="color" class="form-control" (change)="checkForMRPPrice()">
+                <option value="">Color</option>
+                <option *ngFor="let variety of product.varieties;" value="{{ variety.color }}">{{ variety.color }}</option>
+              </select>
+            </div>
+          </div>
+          <div class="input-group mb-4">
+            <span class="input-group-btn">
+              <button (click)="reduceQuantity()"  type="button" class="quantity-left-minus btn" data-type="minus" data-field="">
+                -
+              </button>
+            </span>
+            <input type="text" [(ngModel)]="quantity" class="form-control input-number" value="1" min="1"
+              max="100" readonly>
+            <span class="input-group-btn ml-1">
+              <button (click)="addQuantity()" type="button" class="quantity-right-plus btn" data-type="plus" data-field="">
+                +
+              </button>
+            </span>
+          </div>
+          <div class="row">
+            <div class="col-sm-12 text-center">
+              <p class="addtocart">
+                <button (click)="addToCart()" class="btn btn-primary btn-addtocart">
+                  <i class="icon-shopping-cart"></i> Add to Cart
+                </button>
+                </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="row">
+          <div class="col-lg-12">
+            {{ product.specification }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

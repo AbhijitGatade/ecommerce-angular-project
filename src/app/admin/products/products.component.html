@@ -1,0 +1,40 @@
+<div class="row  table-bordered">
+  <div class="col-lg-12">
+    <h1>Products
+      <a class="btn btn-sm btn-success pull-right" routerLink="/admin/product">+ Product</a>
+    </h1>
+  </div>
+  <div class="col-lg-12">
+    <div class="table-scrollable">
+      <table class="table table-bordered table-stripped">
+        <tr>
+          <th>Actions</th>
+          <th>Sr No</th>
+          <th>Image</th>
+          <th>Name</th>
+          <th>MRP</th>
+          <th>Price</th>
+          <th>Varieties</th>
+          <th>In Stock</th>
+          <th>In Active</th>
+        </tr>
+        <tr *ngFor="let product of products; let i = index;">
+          <td>
+            <button routerLink="/admin/product/{{ product._id }}" class="btn btn-sm btn-primary">Edit</button>
+            <button (click)="deleteproduct(product._id)" class="btn btn-sm btn-danger">Delete</button>
+          </td>
+          <td>{{ (i + 1) }}</td>
+          <td>
+            <img src="{{ baseurl + product.imagepath }}" style="height:80px; width:auto;" />
+          </td>
+          <td>{{ product.name }}</td>
+          <td>{{ product.mrp | currency:"INR" }}</td>
+          <td>{{ product.price | currency:"INR" }}</td>
+          <td><a class="btn btn-sm btn-warning" routerLink="/admin/product/varieties/{{ product._id }}">{{ product.varieties.length }}</a></td>
+          <td>{{ product.instock }}</td>
+          <td>{{ product.isactive }}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

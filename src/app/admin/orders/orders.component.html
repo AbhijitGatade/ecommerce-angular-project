@@ -1,0 +1,45 @@
+<div class="row  table-bordered">
+  <div class="col-lg-12">
+    <h1>Orders</h1>
+  </div>
+  <div class="col-lg-12">
+    <div class="table-scrollable">
+      <table class="table table-bordered table-stripped">
+        <tr>
+          <th>No</th>
+          <th>Date</th>
+          <th>Address</th>
+          <th>City</th>
+          <th>State</th>
+          <th>Pincode</th>
+          <th>Bill Amount</th>
+          <th>Details</th>
+        </tr>
+        <tr *ngFor="let order of orders; let i = index;">
+          <td>{{ (i + 1) }}</td>
+          <td>
+            {{ order.orderdate | date:"dd/MM/yyyy" }}
+          </td>
+          <td>
+            {{ order.address }}
+          </td>
+          <td>
+            {{ order.city }}
+          </td>
+          <td>
+            {{ order.state }}
+          </td>
+          <td>
+            {{ order.pincode }}
+          </td>
+          <td>
+            {{ order.billamount | currency:"INR" }}
+          </td>
+          <td>
+            <a class="btn btn-success btn-sm" routerLink="/user/order/{{ order._id }}">Details</a>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

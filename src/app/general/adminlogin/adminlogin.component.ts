@@ -15,6 +15,7 @@ export class AdminloginComponent implements OnInit {
   constructor(private api:ApiService) { }
 
   ngOnInit(): void {
+    window.scroll(0,0);
     this.formdata = new FormGroup(
       {
         username:new FormControl("", Validators.required),
@@ -28,11 +29,11 @@ export class AdminloginComponent implements OnInit {
       console.log(result);
       if(result.data.status == "success"){
         localStorage.setItem("usertype", "admin");
+        window.location.replace("/admin/dashboard");
       }
       else{
         this.message = "Username or password is wrong.";
       }
-
     }, (err)=>{
       console.log(err);
     });

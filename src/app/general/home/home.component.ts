@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from 'src/app/api.service';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  categories:any;
+  baseurl = this.api.baseurl;
+
+  constructor(private api:ApiService) { }
 
   ngOnInit(): void {
+    this.api.post("productcategory/list", {}).subscribe((result:any)=>{
+      this.categories = result.data;
+    });
   }
 
 }

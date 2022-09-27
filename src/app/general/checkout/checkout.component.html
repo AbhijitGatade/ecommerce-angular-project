@@ -1,0 +1,98 @@
+<div class="breadcrumbs">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <p class="bread"><span><a href="index.html">Home</a></span> / <span>Checkout</span></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="colorlib-product">
+  <div class="container">
+    <div class="row row-pb-lg">
+      <div class="col-sm-10 offset-md-1">
+        <div class="process-wrap">
+          <div class="process text-center active">
+            <p><span>01</span></p>
+            <h3>Shopping Cart</h3>
+          </div>
+          <div class="process text-center active">
+            <p><span>02</span></p>
+            <h3>Checkout</h3>
+          </div>
+          <div class="process text-center">
+            <p><span>03</span></p>
+            <h3>Order Complete</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+    <form [formGroup]="formdata" (submit)="submit(formdata.value)" class="colorlib-form">
+    <div class="row">
+        <div class="col-lg-8">
+          <input type="hidden" formControlName="userid" />
+          <h2>Billing Details</h2>
+          {{ message }}
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="fname">Address</label>
+                <input type="text" formControlName="address" class="form-control" placeholder="Enter Your Address">
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="companyname">Town/City</label>
+                <input type="text" formControlName="city" class="form-control" placeholder="Town or City">
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="stateprovince">State/Province</label>
+                <input type="text" formControlName="state" class="form-control" placeholder="State Province">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="lname">Pincode</label>
+                <input type="text" formControlName="pincode" class="form-control" placeholder="Zip / Postal">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="cart-detail">
+                <h2>Cart Total</h2>
+                <ul>
+                  <li>
+                    <ul>
+                      <li *ngFor="let product of products;"><span>{{ product.quantity }} x {{ product.name }} <i
+                            *ngIf="product.size != ''">{{ product.size + "-" + product.color }}</i></span> <span>{{
+                          product.price | currency:"INR" }}</span></li>
+                    </ul>
+                  </li>
+                  <li><span>Subtotal</span> <span>{{ subtotal | currency:"INR" }}</span></li>
+                  <li><span>Shipping</span> <span>{{ delivery | currency:"INR" }}</span></li>
+                  <li><span>Order Total</span> <span>{{ grandtotal | currency:"INR" }}</span></li>
+                </ul>
+              </div>
+            </div>
+            <div class="w-100"></div>
+            <div class="col-md-12">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 text-center">
+              <p><input type="submit" [disabled]="!formdata.valid" class="btn btn-primary" value="Place an order" /></p>
+            </div>
+          </div>
+        </div>
+    </div>
+  </form>
+  </div>
+</div>

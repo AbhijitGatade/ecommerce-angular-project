@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'ecommerce-angular';
+  cartcount = 0;
+
+  GetChildData(count:any){
+    this.cartcount = count;
+  }
+
 }
